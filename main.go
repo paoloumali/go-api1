@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -17,7 +18,9 @@ func Logger() gin.HandlerFunc {
 		latency := time.Since(t)
 		status := c.Writer.Status()
 		// log latency and status  too
-		log.Printf("latency: %s, status: %d", latency, status)
+		yStr := `{message: Latency captured, status: %d, latency: %s}`
+		message := fmt.Sprintf(yStr, status, latency)
+		log.Println(message)
 	}
 }
 
